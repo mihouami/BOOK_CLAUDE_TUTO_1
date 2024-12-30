@@ -56,6 +56,10 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'config.urls'
 
+#APPEND_SLASH adds a slash to the end of the URL
+APPEND_SLASH = False
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
