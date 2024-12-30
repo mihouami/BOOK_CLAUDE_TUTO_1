@@ -1,0 +1,19 @@
+# Create a new project directory
+mkdir book_management
+cd book_management
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+
+source venv/Scripts/activate
+
+# Install required packages
+pip install django djangorestframework django-cors-headers
+
+# Create Django project
+django-admin startproject config .
+
+# Create books app
+python manage.py startapp books
