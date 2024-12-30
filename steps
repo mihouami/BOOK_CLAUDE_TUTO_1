@@ -23,3 +23,13 @@ python manage.py migrate
 
 # Run the server
 python manage.py runserver
+
+
+# Create migrations
+python manage.py makemigrations
+
+# Apply migrations
+python manage.py migrate
+
+# Create a superuser to access admin panel
+python manage.py createsuperuser
