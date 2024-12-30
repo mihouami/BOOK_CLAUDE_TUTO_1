@@ -17,3 +17,9 @@ django-admin startproject config .
 
 # Create books app
 python manage.py startapp books
+
+# Make migrations
+python manage.py migrate
+
+# Run the server
+python manage.py runserver
