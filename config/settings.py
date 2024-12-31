@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'corsheaders',
     # Local apps
     'books',
+    # Django-filter
+    'django_filters',
     
 ]
 
@@ -47,10 +49,18 @@ MIDDLEWARE = [
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True  # Only for development!
 
+
 # REST Framework settings
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+    # Set default pagination for all ViewSets
+    'DEFAULT_PAGINATION_CLASS': 'books.pagination.StandardResultsSetPagination',
+    'PAGE_SIZE': 10,
+
+    # Set default filter backends for all ViewSets
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',  # For custom filters
+        'rest_framework.filters.SearchFilter',                # For search
+        'rest_framework.filters.OrderingFilter',              # For ordering
     ],
 }
 

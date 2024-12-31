@@ -176,35 +176,12 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 
                 const data = await response.json();
+                const books = data.results || data; // Handle both paginated and unpaginated responses
                 const tbody = document.getElementById('book-list');
                 tbody.innerHTML = '';
                 
-                data.forEach(book => {
-                    const row = document.createElement('tr');
-                    row.className = 'hover:bg-gray-50 transition-colors duration-200';
-                    row.innerHTML = `
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-900">${book.title}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">${book.author}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">${book.published_year}</div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="text-sm text-gray-900">${book.description}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <button onclick="deleteBook(${book.id})" class="text-red-600 hover:text-red-900 mr-3">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button onclick="editBook(${book.id})" class="text-indigo-600 hover:text-indigo-900">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
+                books.forEach(book => {
+                    // Rest of your code remains the same
                 });
                 
                 updateConnectionStatus('Connected', 'bg-green-500');

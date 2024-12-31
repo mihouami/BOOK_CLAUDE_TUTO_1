@@ -34,5 +34,7 @@ python manage.py migrate
 # Create a superuser to access admin panel
 python manage.py createsuperuser
 
+# Django-filter
+pip install django-filter
 
 
