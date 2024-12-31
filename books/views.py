@@ -3,8 +3,14 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import Book
 from .serializers import BookSerializer
+from django.shortcuts import render
+from rest_framework.permissions import AllowAny
+
 
 class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all() # Base queryset for all operations
+    serializer_class = BookSerializer # Serializer to use for all operations
+    permission_classes = [AllowAny]  # Allow everyone to access this viewset
     # ModelViewSet provides all CRUD actions:
     # list(), create(), retrieve(), update(), destroy()
     # GET - api/books/: Lists all books.
@@ -13,8 +19,6 @@ class BookViewSet(viewsets.ModelViewSet):
     # PUT - api/books/<id>/: Updates a specific book.
     # DELETE - api/books/<id>/: Deletes a specific book.
     
-    queryset = Book.objects.all() # Base queryset for all operations
-    serializer_class = BookSerializer # Serializer to use for all operations
     
     # Optional: Add custom filtering
     # Add - api/books/?author=<name> to the URL to filter books by author.
@@ -67,3 +71,9 @@ POST /api/books/ → create() → Creates a new book
 PUT /api/books/{id}/ → update() → Updates a book
 DELETE /api/books/{id}/ → destroy() → Deletes a book
 '''
+
+def book_list(request):
+    return render(request, 'book_list.html')
+
+def book_update(request, id):
+    return render(request, 'update_book.html', {'book_id': id})

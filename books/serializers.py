@@ -16,7 +16,7 @@ class BookSerializer(serializers.ModelSerializer):
     # You could add custom fields like this:
     # average_rating = serializers.FloatField(read_only=True)
     
-    
+    #validate_fieldname is a method that is called when the serializer is validated
     def validate_published_year(self, value):
         if value < 0:
             raise serializers.ValidationError("Published year can't be negative")
